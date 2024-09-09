@@ -1,0 +1,62 @@
+---
+title: "Suits_Viewership_Report"
+format: html
+editor: visual
+---
+
+## *Suits Overview*
+
+***Suits** is a legal drama series that premiered on USA Network in 2011. The show follows **Harvey Specter**, a top corporate lawyer, and **Mike Ross**, a college dropout with a photographic memory, as they navigate the complex world of corporate law.*
+
+*Throughout its nine-season run, Suits attracted a large and loyal audience, thanks to its witty dialogue and intense legal drama.*
+
+## Suits Logo
+
+![](images/image-337105016.png)
+
+```{r}
+season_data <- data.frame(
+  Season = c(1, 2, 3, 4, 5, 6, 7, 8, 9),
+  Avg_Viewership_Millions = c(4.6, 3.7, 3.4, 3.1, 2.9, 2.3, 2.2, 1.5, 1.0),
+  Episodes = c(12, 16, 16, 16, 16, 16, 16, 16, 10)
+)
+
+season_data
+```
+
+## Graph of viewership over time
+
+#### Viewership Over Time
+
+```{r}
+library(ggplot2)
+
+ggplot(season_data, aes(x = Season, y = Avg_Viewership_Millions)) +
+  geom_line(color = "blue", size = 1) +
+  geom_point(size = 2, color = "red") +
+  labs(
+    title = "Average Viewership per Season for Suits",
+    x = "Season",
+    y = "Avg Viewership (Millions)"
+  ) +
+  theme_minimal()
+
+```
+
+#### 
+Season-to-Season Viewership Changes
+
+```{r}
+ggplot(season_data, aes(x = factor(Season), y = Avg_Viewership_Millions, fill = factor(Season))) +
+  geom_bar(stat = "identity") +
+  labs(
+    title = "Season-to-Season Viewership Changes",
+    x = "Season",
+    y = "Avg Viewership (Millions)"
+  ) +
+  theme_minimal()
+```
+
+## Observed Changes
+
+Between **Season 1** and **Season 3**, viewership decreased by **1.2 million viewers**. The trend continued as viewership further decreased by **2.4 million** between **Season 3** and **Season 9**, largely attributed to changes in cast and storyline direction.
